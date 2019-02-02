@@ -3,7 +3,7 @@ Servo Controller application to send inputs to servo motor attached to Arduino i
 
 ## Welcome to  Servo Controller C 
 
-Application sends signals to servo to controll Bi-directional motor.
+Application sends signals to servo to control Bi-directional motor.
 
 
 
