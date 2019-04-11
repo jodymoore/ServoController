@@ -41,8 +41,7 @@ class CoordReader {
             
             //declare string to hold each line of text
             string line;
-
-
+            
             //loop through myinfile while line exist
             while(getline(myinfile,line))
             {

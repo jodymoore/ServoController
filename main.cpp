@@ -4,6 +4,7 @@
 #include <fstream>
 #include <string>
 #include <stdlib.h>
+#include <unistd.h>
 #include <Bearing.h>
 #include <Flight.h>
 #include <CoordReader.h>
@@ -15,7 +16,7 @@
   Example: 
 
   New Target Position:
-  33.014377777777774 -106.01069444444444
+
   
   Current Position :
   33.015794444444445 -106.01206944444445
@@ -26,7 +27,7 @@
   Steer the parachute 
 
   simulate getting gps coords and then getting bearing
-  the system would poll every 500ms fo the loop
+  the system would poll every 500ms for the loop
 
 */
 
@@ -71,14 +72,11 @@ typedef struct {
 // }
 
 
-
 int main() {
 
     COORDS newTargetPosition,
            currentPosition;
     
-
-
     double NewBearing = 0.0,
            currentHeading,
            targetHeading;
@@ -154,6 +152,7 @@ double dmsToLatLon(double degrees, double minutes, double seconds, char directio
 
 
 
+
 /*
  * read lattitude longitude coordinates
  *
@@ -164,7 +163,7 @@ double dmsToLatLon(double degrees, double minutes, double seconds, char directio
 
 // movement fuctions - sends input commands to drive motor.
 void turnLeft() {
-
+    
 }
 
 void turnRight() {
