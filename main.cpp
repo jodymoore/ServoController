@@ -89,7 +89,9 @@ int main() {
     
     CoordReader cReader;
 
-    cReader.Read();
+    cReader.Read(newTargetPosition.lat, newTargetPosition.lon);
+
+
 
     // cout << "Enter lat, lon values seperated by a space" << endl;
 

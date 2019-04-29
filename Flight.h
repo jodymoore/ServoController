@@ -15,14 +15,18 @@ class Flight {
   public:
 
       bool inFlight = true;
-      int altitude = 10000;
+      int altitude = 8000;
       double newBearing = 0.0;
 
       Flight() {
         _targetHeading = 0;
         _currentHeading = 0;
       }
-
+/*
+ *  Function for simulating the flight of an autonomous controlled
+ *  parachute system
+ *
+ */
       void flight(int targetHeading) {
 
         while (inFlight && altitude > 0) {
@@ -38,40 +42,45 @@ class Flight {
           _targetHeading = targetHeading;
           // get current heading 
 
-          cout << "* Enter Current heading in degrees *" << endl;;
-          cout<< "************************************" << endl;
-          cin >> _currentHeading;
 
-        
+         // promt for heading using constraints
+          do
+         {
+            cout << "* Enter Current heading in degrees *" << endl;;
+            cout<< "************************************" << endl;
+            cin >> _currentHeading;
+
+          } while(_currentHeading >= 360 || _currentHeading <= 0);
+           
           // if target heading
           if(_currentHeading > _targetHeading) {
               int range = _currentHeading - _targetHeading;
               cout << endl;
-              cout<< "****************************" << endl;
+              cout<< "*****************************" << endl;
               cout << "*  Action: \t";
           
               if(range > 5) {
                   cout << "100% Left Turn *\n" ;
               }
               else {
-                  cout << "25% Left Turn *\n";
+                  cout << "25% Left Turn   *\n";
               }  
-              cout << "****************************" << endl;
+              cout << "*****************************" << endl;
               cout << endl;  
               StopTurn();
           }
           else if (_currentHeading < _targetHeading ) {
               int range = _targetHeading - _currentHeading;
               cout << endl;
-              cout<< "****************************" << endl;
+              cout<< "*****************************" << endl;
               cout << "*  Action: \t";
               if(range > 5) {
                   cout << "100% Right Turn *\n";
               }
               else {
-                  cout << "25% Right Turn *\n";
+                  cout << "25% Right Turn  *\n";
               }  
-              cout << "****************************" << endl;
+              cout << "*****************************" << endl;
               cout << endl;   
              StopTurn();
           }
@@ -82,12 +91,17 @@ class Flight {
             cout<< "*************************" << endl;
             cout << endl; 
           }
-    
+          if (altitude <= 1000) {
+              landingPattern(); 
+              altitude = 0;
+          }
         }
-        landingPattern(); 
-        
+       
     }
-
+/*
+ *  Function for simulating the landing procedure steps
+ *
+ */
     void landingPattern() {
 
          // designate landing area
@@ -99,7 +113,7 @@ class Flight {
           usleep(2000000);
          cout << "Calculating pattern..." << endl;
            usleep(2000000);
-         cout << "Enter pattern..." << endl;
+         cout << "Entering pattern..." << endl;
          usleep(2000000);
          cout << "Down wind leg..." << endl;
           usleep(2000000);
@@ -109,7 +123,7 @@ class Flight {
            usleep(2000000);
          cout << "Three...Two..One" << endl;
            usleep(2000000);
-         cout << "Flare Flare Flare" << endl;
+         cout << "Flare! Flare! Flare!" << endl;
            usleep(2000000);
          cout << "The Eagle Has Landed!!!" << endl;
 
