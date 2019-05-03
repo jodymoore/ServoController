@@ -11,4 +11,4 @@ Application sends signals to servo to control Bi-directional motor.
 
 Website-info.
 
-<a href="https://jodymoore.github.io/ServoController/">Servo Controller C Code</a> 
+<a href="https://jodymoore.github.io/ServoController/">Website Servo Controller C</a> 
