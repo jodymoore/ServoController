@@ -2,6 +2,8 @@
  * Class CoordReader
  *
  */
+ #include <string.h>
+ #include <stdio.h>
 
 class CoordReader {
   static const int DATA_SIZE = 100;
@@ -25,49 +27,56 @@ class CoordReader {
         double getLon() {
           return lon;
         } 
-        /*
+
+       /*
         *  Function to read Targetposition and current position coords
         *  
-        *
         */
+        void Read( double &lat, double &lon, string fileName) {
 
-        void Read( double lat, double lon) {
-
-            //declare read stream
+            // declare read stream
             ifstream myinfile;
 
             int i;
   
-            //open file 
-            myinfile.open("Targetposition.txt");
+            // open file 
+            myinfile.open(fileName);
 
             if(myinfile.bad()) {
               cerr << "Unable to open TargetPosition.txt\n";
               exit(8);
             }
             
-            //declare string to hold each line of text
+            // declare string to hold each line of text
             string line;
-            int index = 0;
-            //loop through myinfile while line exist
-            while(getline(myinfile,line))
-            {
-             
-              cout<< "***************************************" << endl;
-              cout << "* Reading Target Position Coordinates *" << endl;
-              cout<< "***************************************" << endl << endl;
-
-              cout << line << endl << endl;
-              // split line into two variables and store in lat and lon
-              // data_array[index] = 
-              //  lat = cReader.getLat;
-              //  lon = cReader.getLon;
-
-              index++;
-            }
+            // loop through myinfile while line exist
+            getline(myinfile,line);
             
-            //make sure and close ifstream
+             
+              cout << "\t\t\t" <<"***************************************" << endl;
+              cout << "\t\t\t" << "* Reading Target Position Coordinates *" << endl;
+              cout << "\t\t\t" << "***************************************" << endl << endl;
+
+              cout << "\t\t\t" << line << endl << endl;
+              // split line into two variables and store in lat and lon
+
+               char * tab2 = new char [line.length()+1];
+
+               strcpy(tab2, line.c_str());
+
+               char * pch;
+     
+               pch = strtok(tab2," ");
+              // // data_array[index] = 
+       
+               lat = atof(pch);
+               pch = strtok(NULL, " ");
+
+               lon = atof(pch);
+                    
+            // make sure and close ifstream
             myinfile.close();  
 
         }   
+
 };

@@ -8,31 +8,32 @@
 #include <Bearing.h>
 #include <Flight.h>
 #include <CoordReader.h>
-#include <helpers.h>
 
-/*
+/** 
+ *
+ * CIS-277 
+ * Jody Moore
+ *
+    Users input lattitude and longitude coords 
+    Example: 
 
-  Users input lattitude and longitude coords 
-  Example: 
+    New Target Position:
 
-  New Target Position:
+    
+    Current Position :
+    33.015794444444445 -106.01206944444445
 
-  
-  Current Position :
-  33.015794444444445 -106.01206944444445
+    heading = 321 degrees
 
-  heading = 321 degrees
+    After Heading is Calculated User can simulate recieving a new heading to 
+    Steer the parachute 
 
-  After Heading is Calculated User can simulate recieving a new heading to 
-  Steer the parachute 
-
-  simulate getting gps coords and then getting bearing
-  the system would poll every 500ms for the loop
+    simulate getting gps coords and then getting bearing
+    the system would poll every 500ms for the loop
 
 */
 
 using namespace std;
-
 
 
 double dmsToLatLon(double degrees, double minutes, double seconds, char direction);
@@ -41,35 +42,9 @@ double getRandLat(double targetLat, double startLat);
 
 double getRandLon(double targetLon, double startLdouble);
 
-
 typedef struct {
     double lat,lon;
 } COORDS;
-
-
-// v3 = rand() % 30 + 1985
-
-// double getRandLat(double targetLat, double startLat) {
-
-//   // create the random number generator:
-//    Rand_double rd = new rd{startLat,targetLat};
-//    double randomLat = rd{startLat,targetLat};
-
-//    return randomLat;
-// }
-
-// double getRandLon(double targetLon, double startLon) {
-
-//    double randomLon = (double) rand() % startLon + targetLon;
-
-//    return randomLon;
-// }
-
-
-// void setTargetPos ( COORDS *targetPos ) {
-//   COORDS newTargetPosition = { 4, 5}; // set coords of target position.
-//   *targetPos = newTargetPosition;
-// }
 
 
 int main() {
@@ -85,111 +60,79 @@ int main() {
     double newlat = 0.0,
            newlon = 0.0;
 
-    // cin >> newTargetPosition.lat >> newTargetPosition.lon;
-    
+
+    newTargetPosition.lat = 0.0;
+    newTargetPosition.lon = 0.0;
+    currentPosition.lat = 0.0;
+    currentPosition.lon = 0.0;
+
     CoordReader cReader;
 
-    cReader.Read(newTargetPosition.lat, newTargetPosition.lon);
+    cReader.Read(newTargetPosition.lat, newTargetPosition.lon, "Targetposition.txt");
 
+    cReader.Read(currentPosition.lat, currentPosition.lon, "Currentposition.txt"); 
 
-
-    // cout << "Enter lat, lon values seperated by a space" << endl;
-
-    // cin >> newTargetPosition.lat >> newTargetPosition.lon;  
-
-     
-    // debugger to set precision    
-    cout << "lat = " << newTargetPosition.lat << endl;
-
-    cout << "** New Target Position ** \n"
-         << "lat value: " << newTargetPosition.lat << "\n"  
-         << "lon value: " << newTargetPosition.lon << endl;
-
-    // do another read for current position coords:    TODO
-    cout << "****Enter Current Position Coordinates****" << endl;
-
-    cout << "Enter lat, lon values seperated by a space" << endl;
-
-    cin >> currentPosition.lat >> currentPosition.lon; 
-
-    cout << "** Current Position ** \n" 
-         << "lat value: " << currentPosition.lat << "\n"  
-         << "lon value: " << currentPosition.lon <<  endl;
-
+      cout << "\t\t\t" << "************************" << endl;
+      cout << "\t\t\t" << "* New Target Position  *" << endl;
+      cout << "\t\t\t" << "************************" << endl << endl;
+      cout << "\t\t\t" << "lat value: " << setprecision(15) 
+           << newTargetPosition.lat <<  "\n"  
+           << "\t\t\t" << "lon value: " << newTargetPosition.lon << endl << endl;
+   
+      cout << "\t\t\t" << "**********************" << endl;
+      cout << "\t\t\t" << "*  Current Position  *" << endl;
+      cout << "\t\t\t" << "**********************" << endl << endl;
+      cout << "\t\t\t" << "lat value: " << currentPosition.lat << "\n"  
+           << "\t\t\t"<< "lon value: " << currentPosition.lon <<  endl << endl;
+      
     // Instance Class Bearing
     Bearing bearing;
 
+
     NewBearing = bearing.bearing(newTargetPosition.lat, newTargetPosition.lon,
-                         currentPosition.lat, currentPosition.lon);
- 
-    cout << "** Bearing:" <<  NewBearing << endl;
+                 currentPosition.lat, currentPosition.lon);
+
+    
+    cout << "\t\t\t" << "** Bearing:  " <<  NewBearing << " **"<< endl << endl;
 
     targetHeading = NewBearing; 
-
-   Flight flight;
-
-   flight.flight(targetHeading);
-
-}
-
-
-
-
-
-// Decimal Degrees = Degrees + minutes/60 + seconds/3600
-
-double dmsToLatLon(double degrees, double minutes, double seconds, char direction) {
-   // force toupper case
-   double result = 0.0;
-  int mult = 1;
-  if(direction == 'W') {
-       mult = (-1);
-   }
-
-   degrees = degrees + (minutes/60) + (seconds/3600);
-
-  result = degrees * mult;
-  return result;
-}
-
-
-
-
-/*
- * read lattitude longitude coordinates
- *
- *
- */
-
-
-
-// movement fuctions - sends input commands to drive motor.
-void turnLeft() {
     
+    // Place targetHeading into flight fuction.  
+    Flight flight;
+    
+    // Call flight class flight function
+    flight.flight(targetHeading);
+
 }
 
-void turnRight() {
+// // Not Public
+// // movement fuctions - sends input commands to drive motor.
+// void turnLeft() {
+    
+// }
+
+// void turnRight() {
  
-}
+// }
 
-void fullFlight() {
+// void fullFlight() {
 
-}
+// }
 
-void halfBrakes() {
+// void halfBrakes() {
 
-}
+// }
 
-// logic functions 
-void getConditions() {
+// // logic functions 
+// void getConditions() {
 
-}
+// }
 
-// helper functions for getConditions
-void getWindDirection() {
+// // helper functions for getConditions
+// void getWindDirection() {
 
-}
+// }
 
-void getCurrentDirection() {
+// void getCurrentDirection() {
 
-}
+// }

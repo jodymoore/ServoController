@@ -34,10 +34,10 @@ class Flight {
           // // get current position for bearing/heading to target
           // newBearing = bearing.bearing(newTargetPosition.lat,   newTargetPosition.lon,
           //                currentPosition.lat, currentPosition.lon)
-          cout << "Alltitude: " << altitude << "\t" << "|" << "\t";
+          cout << "\t\t\t" << "Alltitude: " << altitude << "\t" << "|" << "\t";
           altitude = altitude - 1000;
 
-          cout << "Target Heading: "  << targetHeading << endl << endl;
+          cout << "\t" << "Target Heading: "  << targetHeading << endl << endl;
 
           _targetHeading = targetHeading;
           // get current heading 
@@ -46,8 +46,8 @@ class Flight {
          // promt for heading using constraints
           do
          {
-            cout << "* Enter Current heading in degrees *" << endl;;
-            cout<< "************************************" << endl;
+            cout << "\t\t\t" << "* Enter Current heading in degrees 0 to 360 *" << endl;;
+            cout<< "\t\t\t" << "*********************************************" << endl;
             cin >> _currentHeading;
 
           } while(_currentHeading >= 360 || _currentHeading <= 0);
@@ -56,40 +56,40 @@ class Flight {
           if(_currentHeading > _targetHeading) {
               int range = _currentHeading - _targetHeading;
               cout << endl;
-              cout<< "*****************************" << endl;
-              cout << "*  Action: \t";
+              cout<< "\t\t\t" << "*****************************" << endl;
+              cout << "\t\t\t" << "*  Action: ";
           
               if(range > 5) {
-                  cout << "100% Left Turn *\n" ;
+                  cout << "\t" << "100% Left Turn *\n" ;
               }
               else {
-                  cout << "25% Left Turn   *\n";
+                  cout << "\t" << "25% Left Turn   *\n";
               }  
-              cout << "*****************************" << endl;
-              cout << endl;  
+              cout << "\t\t\t" << "*****************************" << endl;
+              cout << "\t\t\t" << endl;  
               StopTurn();
           }
           else if (_currentHeading < _targetHeading ) {
               int range = _targetHeading - _currentHeading;
               cout << endl;
-              cout<< "*****************************" << endl;
-              cout << "*  Action: \t";
+              cout<< "\t\t\t" << "*****************************" << endl;
+              cout << "\t\t\t" << "*  Action: ";
               if(range > 5) {
-                  cout << "100% Right Turn *\n";
+                  cout << "\t" << "100% Right Turn *\n";
               }
               else {
-                  cout << "25% Right Turn  *\n";
+                  cout << "\t" << "25% Right Turn  *\n";
               }  
-              cout << "*****************************" << endl;
+              cout << "\t\t\t" << "*****************************" << endl;
               cout << endl;   
              StopTurn();
           }
           else {
-            cout<< "*************************" << endl;
-            cout << "*  Action: \t";
-            cout << "Full Flight *\n";
-            cout<< "*************************" << endl;
-            cout << endl; 
+            cout << "\t\t\t"<< "*************************" << endl;
+            cout  << "\t\t\t"<< "*  Action: ";
+            cout  << "\t"<< "Full Flight *\n";
+            cout << "\t\t\t"<< "*************************" << endl;
+            cout << "\t\t\t" << endl; 
           }
           if (altitude <= 1000) {
               landingPattern(); 
@@ -109,33 +109,33 @@ class Flight {
          // enterdown wind of pattern
          // turn base leg
          // final approch
-         cout << "Designate landing area ...." << endl;
-          usleep(2000000);
-         cout << "Calculating pattern..." << endl;
-           usleep(2000000);
-         cout << "Entering pattern..." << endl;
-         usleep(2000000);
-         cout << "Down wind leg..." << endl;
-          usleep(2000000);
-         cout << "Turning on base leg..." << endl;
-          usleep(2000000);
-         cout << "Turning on final approach..." << endl;
-           usleep(2000000);
-         cout << "Three...Two..One" << endl;
-           usleep(2000000);
-         cout << "Flare! Flare! Flare!" << endl;
-           usleep(2000000);
-         cout << "The Eagle Has Landed!!!" << endl;
+         cout << "\t\t\t" << "Designate landing area ...." << endl;
+          usleep(3000000);
+         cout << "\t\t\t" << "Calculating pattern..." << endl;
+           usleep(3000000);
+         cout << "\t\t\t" << "Entering pattern..." << endl;
+         usleep(3000000);
+         cout << "\t\t\t" << "Down wind leg..." << endl;
+          usleep(3000000);
+         cout << "\t\t\t" << "Turning on base leg..." << endl;
+          usleep(3000000);
+         cout << "\t\t\t" << "Turning on final approach..." << endl;
+           usleep(3000000);
+         cout << "\t\t\t" << "Three...Two..One" << endl;
+           usleep(3000000);
+         cout << "\t\t\t" << "Flare! Flare! Flare!" << endl;
+           usleep(3000000);
+         cout << "\t\t\t" << "The Eagle Has Landed!!!" << endl;
 
     }
 
     void StopTurn() {
-        usleep(1000000);
-        cout<< "*************************" << endl;
-        cout << "*  STOP \t";
-        cout << "Full Flight *\n";
-        cout<< "*************************" << endl;
-        cout << endl; 
+        usleep(2000000);
+        cout << "\t\t\t"<< "*************************" << endl;
+        cout << "\t\t\t" << "*  STOP ";
+        cout << "\t"<< "Full Flight *\n";
+        cout << "\t\t\t"<< "*************************" << endl;
+        cout << "\t\t\t" << endl; 
     }
 
 

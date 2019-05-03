@@ -37,16 +37,22 @@ class Bearing {
   double bearing(double lat, double lon, double lat2, double lon2){
 
       double teta1 = radians(lat);
+      
       double teta2 = radians(lat2);
+      
       double delta1 = radians(lat2-lat);
+
       double delta2 = radians(lon2-lon);
 
       //==================Heading Formula Calculation================//
 
       double y = sin(delta2) * cos(teta2);
       double x = cos(teta1)*sin(teta2) - sin(teta1)*cos(teta2)*cos(delta2);
+       
       double brng = atan2(y,x);
+        
       brng = degrees(brng);// radians to degrees
+   
       brng = (((int)brng + 360) % 360 ); 
 
       // Serial.print("Heading GPS: ");
